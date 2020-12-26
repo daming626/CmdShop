@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="xmlbeans-3.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/xmlbeans-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/poi-ooxml-schemas-4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/poi-ooxml-4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/poi-4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/commons-compress-1.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Desktop/poi/commons-collections4-4.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
