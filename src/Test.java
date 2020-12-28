@@ -30,6 +30,8 @@ public class Test {
                         System.out.print("\t"+product.getpDesc());
                         System.out.println("\t"+product.getpPrice());
                     }
+                    System.out.println("请输入商品ID");
+                    String pId=scanner.next();
                     break;
                 } else {
                     System.out.println("登陆失败");
