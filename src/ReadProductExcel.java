@@ -40,7 +40,7 @@ public class ReadProductExcel {
         return products;
     }
     public Product getProductById(String id,InputStream in) {
-        Product products[] = null;
+       // Product products[] = null;
         try {
             XSSFWorkbook xw = new XSSFWorkbook(in);
             XSSFSheet xs = xw.getSheetAt(0);

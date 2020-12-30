@@ -85,7 +85,7 @@ public class Test {
                     }
                     break;
                 } else {
-                    System.out.println("登陆失败");
+                    System.out.println("登陆失败!用户名或密码错误！");
                 }
             }
         }
