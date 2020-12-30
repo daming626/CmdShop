@@ -9,7 +9,7 @@ public class Test {
 
         InputStream ins=Class.forName("Test").getResourceAsStream("/Product.xlsx");
         ReadProductExcel readProductExcel=new ReadProductExcel();
-        Product products[]=readProductExcel.readExcel(ins);
+        Product products[]=readProductExcel.getAllProduct(ins);
 
         boolean bo=true;
         while(bo) {
@@ -32,6 +32,7 @@ public class Test {
                     }
                     System.out.println("请输入商品ID");
                     String pId=scanner.next();
+
                     break;
                 } else {
                     System.out.println("登陆失败");

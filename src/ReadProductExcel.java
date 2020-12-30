@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ReadProductExcel {
-    public Product[] readExcel(InputStream in) {
+    public Product[] getAllProduct(InputStream in) {
         Product products[] = null;
         try {
             XSSFWorkbook xw = new XSSFWorkbook(in);
