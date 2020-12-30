@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) throws ClassNotFoundException {
         InputStream in=Class.forName("Test").getResourceAsStream("/user.xlsx");
-        ReadUserExcel readExcel=new ReadUserExcel();
-        User users[]=readExcel.readExcel(in);
+        ReadUserExcel readUserExcel=new ReadUserExcel();
+        User users[]=readUserExcel.readUserExcel(in);
 
         InputStream ins=Class.forName("Test").getResourceAsStream("/Product.xlsx");
         ReadProductExcel readProductExcel=new ReadProductExcel();
