@@ -11,7 +11,14 @@ public class Test {
         ReadProductExcel readProductExcel=new ReadProductExcel();
         Product products[]=readProductExcel.getAllProduct(ins);
 
-        boolean bo=true;
+       /*for (User u:users){
+            System.out.print(u.getUsername());
+            System.out.print("\t"+u.getPassword());
+            System.out.print("\t"+u.getAddress());
+            System.out.println("\t"+u.getPhone());
+        }*/
+
+        boolean bo = true;
         while(bo) {
             System.out.println("请输入用户名：");
             Scanner scanner = new Scanner(System.in);
@@ -23,7 +30,7 @@ public class Test {
             for (User user : users) {
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登陆成功");
-                    bo=false;
+                    bo = false;
                     for (Product product:products){
                         System.out.print(product.getpId());
                         System.out.print("\t"+product.getpName());
@@ -53,7 +60,7 @@ public class Test {
                     if(choose==1){
                         ins = null;
                         ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
-                        readProductExcel = new ReadProductExcel();
+                       // readProductExcel = new ReadProductExcel();
                         products = readProductExcel.getAllProduct(ins);
                         for (Product p : products) {
                             System.out.print(p.getpId());
@@ -74,12 +81,45 @@ public class Test {
                         /*
                         查看购物车
                          */
+                        System.out.println("购物车商品信息如下：");
                         for (Product p:carts){
                             if (p!=null){
                                 System.out.print(p.getpId());
                                 System.out.print("\t" + p.getpName());
                                 System.out.print("\t" + p.getpPrice());
                                 System.out.println("\t" + p.getpDesc());
+                            }
+                        }
+                        /*
+                        1、按1结账
+                        2、按2继续购物
+                         */
+                        System.out.println("结账请按1");
+                        System.out.println("继续添加物品请按2");
+                        choose=scanner.nextInt();
+                        if (choose==1){
+                           /* int a=0;
+                            for (Product p:carts){
+                                a=a+p.getpPrice();
+                            }
+                            System.out.println("总价格为" + a);
+*/
+                        }else if(choose==2){
+                            ins = null;
+                            ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
+                            products = readProductExcel.getAllProduct(ins);
+                            for (Product p:products){
+                                System.out.print(p.getpId());
+                                System.out.print("\t" + p.getpName());
+                                System.out.print("\t" + p.getpPrice());
+                                System.out.println("\t" + p.getpDesc());
+                            }
+                            System.out.println("请输入需要购买的商品的ID");
+                            pId = scanner.next();
+                            product = readProductExcel.getProductById(pId,ins);
+                            System.out.println("要购买的商品的价格" + product.getpPrice());
+                            if (product!=null){
+                                carts[count++]=product;
                             }
                         }
                     }
