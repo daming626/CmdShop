@@ -32,7 +32,57 @@ public class Test {
                     }
                     System.out.println("请输入商品ID");
                     String pId=scanner.next();
-
+                    int count = 0;
+                    /*
+                    创建一个购物车的数组：存的是商品
+                     */
+                    Product carts[] = new Product[3];
+                    /*
+                    根据此ID去Excel中去查找是否有该ID的商品信息，如果有则返回该商品即可
+                     */
+                    ins = null;
+                    ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
+                    Product product = readProductExcel.getProductById(pId, ins);
+                    System.out.println("要购买的商品价格：" + product.getpPrice());
+                    if(product!=null){
+                        carts[count++]=product;
+                    }
+                    System.out.println("继续购买商品请按1");
+                    System.out.println("查看购物车请按2");
+                    int choose=scanner.nextInt();
+                    if(choose==1){
+                        ins = null;
+                        ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
+                        readProductExcel = new ReadProductExcel();
+                        products = readProductExcel.getAllProduct(ins);
+                        for (Product p : products) {
+                            System.out.print(p.getpId());
+                            System.out.print("\t" + p.getpName());
+                            System.out.print("\t" + p.getpPrice());
+                            System.out.println("\t" + p.getpDesc());
+                        }
+                        System.out.println("请输入商品ID把该商品加入购物车");
+                        pId = scanner.next();
+                        ins = null;
+                        ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
+                        product = readProductExcel.getProductById(pId, ins);
+                        System.out.println("要购买的商品价格：" + product.getpPrice());
+                        if(product!=null){
+                            carts[count++]=product;
+                        }
+                    }else if(choose==2){
+                        /*
+                        查看购物车
+                         */
+                        for (Product p:carts){
+                            if (p!=null){
+                                System.out.print(p.getpId());
+                                System.out.print("\t" + p.getpName());
+                                System.out.print("\t" + p.getpPrice());
+                                System.out.println("\t" + p.getpDesc());
+                            }
+                        }
+                    }
                     break;
                 } else {
                     System.out.println("登陆失败");
