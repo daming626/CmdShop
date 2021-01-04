@@ -98,6 +98,12 @@ public class Test {
                         System.out.println("继续添加物品请按2");
                         choose=scanner.nextInt();
                         if (choose==1){
+                            int a=0 ;
+                            for (Product p:carts){
+                                int b = Integer.parseInt(p.getpPrice());
+                                a = a + b;
+                            }
+                            System.out.println("总价格为" +a);
                            /* int a=0;
                             for (Product p:carts){
                                 a=a+p.getpPrice();
