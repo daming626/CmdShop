@@ -10,7 +10,7 @@ public class Test {
         ReadUserExcel readUserExcel=new ReadUserExcel();
         User users[]=readUserExcel.readUserExcel(in);
 
-        InputStream ins=Class.forName("Test").getResourceAsStream("/Product.xlsx");
+        InputStream inss=Class.forName("Test").getResourceAsStream("/Product.xlsx");
 
 
        /*for (User u:users){
@@ -40,7 +40,7 @@ public class Test {
                         System.out.println("退出请按4");
                         int choose=scanner.nextInt();
                         if (choose==1){
-                            shopping(ins);
+                            shopping(inss);
                         }
                         else if (choose == 2) {
                                     /*
@@ -53,6 +53,44 @@ public class Test {
                             Order order=new Order();
                             order.setUser(user);
                             order.setProducts(carts);
+                            int a=0;
+                            int b=0;
+                            float c=0;
+                            float d=0;
+                            for (Product o:carts){
+                                if (o!=null) {
+                                    if (o.getpId().equals("111")) {
+                                        a += 1;
+                                        c += Float.parseFloat(o.getpPrice());
+                                        //c = Float.parseFloat(o.getpPrice()) * a;//覆盖前面的c值取最后一个
+                                    } else if (o.getpId().equals("222")) {
+                                        b += 1;
+                                        d += Float.parseFloat(o.getpPrice());
+                                        //d = Float.parseFloat(o.getpPrice()) * b;//覆盖前面的d值取最后一个
+                                    }
+                                }
+                            }
+                            order.setTotalPrice(c+d);
+                            order.setFinalPay(c*1+d*1);//10折优惠
+                            System.out.println("购买商品111的数量为：" + a);
+                            System.out.println("购买商品222的数量为：" + b);
+                            System.out.println("购买商品111的价格为：" + c);
+                            System.out.println("购买商品222的价格为：" + d);
+                            System.out.println("总价= "+order.getFinalPay());
+
+                            /*
+                            int a=0;
+                            float b=0;
+                            for (Product cart:carts){
+                                if (cart!=null){
+                                    a+=1;
+                                    b+=Float.parseFloat(cart.getpPrice());
+                                }
+                            }
+                            System.out.println("购买商品的数量为："+a);
+                            System.out.println("商品总价"+b);
+                            */
+
                             /*
                              统计每个商品的数量代码你去实现
                              */
@@ -61,7 +99,7 @@ public class Test {
                             System.exit(0);
                         }
                     }
-                    break;
+                    //break;
                 }
                  else{
                     System.out.println("登陆失败!用户名或密码错误！");
@@ -70,9 +108,9 @@ public class Test {
         }
     }
 
-    public static void shopping(InputStream ins) throws ClassNotFoundException {
+    public static void shopping(InputStream inss) throws ClassNotFoundException {
         ReadProductExcel readProductExcel=new ReadProductExcel();
-        Product products[]=readProductExcel.getAllProduct(ins);
+        Product products[]=readProductExcel.getAllProduct(inss);
         for (Product product:products){
         System.out.print(product.getpId());
         System.out.print("\t"+product.getpName());
@@ -85,9 +123,9 @@ public class Test {
                         /*
                         根据此ID去Excel中去查找是否有该ID的商品信息，如果有则返回该商品即可
                          */
-        ins = null;
-        ins = Class.forName("Test").getResourceAsStream("/product.xlsx");
-        Product product = readProductExcel.getProductById(pId, ins);
+        inss = null;
+        inss = Class.forName("Test").getResourceAsStream("/product.xlsx");
+        Product product = readProductExcel.getProductById(pId, inss);
         System.out.println("要购买的商品价格：" + product.getpPrice());
         if(product!=null){
         carts[count++]=product;
