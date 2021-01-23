@@ -4,14 +4,12 @@ import java.util.Scanner;
 public class Test {
     static Product carts[] = new Product[3];
     static Scanner scanner = new Scanner(System.in);
+    static int count = 0;
 
     public static void main(String[] args) throws ClassNotFoundException {
         InputStream in=Class.forName("Test").getResourceAsStream("/user.xlsx");
         ReadUserExcel readUserExcel=new ReadUserExcel();
         User users[]=readUserExcel.readUserExcel(in);
-
-        InputStream inss=Class.forName("Test").getResourceAsStream("/Product.xlsx");
-
 
        /*for (User u:users){
             System.out.print(u.getUsername());
@@ -40,7 +38,7 @@ public class Test {
                         System.out.println("退出请按4");
                         int choose=scanner.nextInt();
                         if (choose==1){
-                            shopping(inss);
+                            shopping(in);
                         }
                         else if (choose == 2) {
                                     /*
@@ -79,19 +77,6 @@ public class Test {
                             System.out.println("总价= "+order.getFinalPay());
 
                             /*
-                            int a=0;
-                            float b=0;
-                            for (Product cart:carts){
-                                if (cart!=null){
-                                    a+=1;
-                                    b+=Float.parseFloat(cart.getpPrice());
-                                }
-                            }
-                            System.out.println("购买商品的数量为："+a);
-                            System.out.println("商品总价"+b);
-                            */
-
-                            /*
                              统计每个商品的数量代码你去实现
                              */
                         }
@@ -108,7 +93,8 @@ public class Test {
         }
     }
 
-    public static void shopping(InputStream inss) throws ClassNotFoundException {
+    public static void shopping(InputStream in) throws ClassNotFoundException {
+        InputStream inss=Class.forName("Test").getResourceAsStream("/Product.xlsx");
         ReadProductExcel readProductExcel=new ReadProductExcel();
         Product products[]=readProductExcel.getAllProduct(inss);
         for (Product product:products){
@@ -119,16 +105,16 @@ public class Test {
         }
         System.out.println("请输入商品ID");
         String pId=scanner.next();
-        int count = 0;
                         /*
                         根据此ID去Excel中去查找是否有该ID的商品信息，如果有则返回该商品即可
                          */
+        //ReadProductExcel readProductExcel1=new ReadProductExcel();
         inss = null;
         inss = Class.forName("Test").getResourceAsStream("/product.xlsx");
         Product product = readProductExcel.getProductById(pId, inss);
         System.out.println("要购买的商品价格：" + product.getpPrice());
-        if(product!=null){
-        carts[count++]=product;
+        if(product != null){
+            carts[count++]=product;
         }
     }
 
