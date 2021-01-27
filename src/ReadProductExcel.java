@@ -31,7 +31,7 @@ public class ReadProductExcel {
                     } else if (k == 3) {
                         product.setpPrice(this.getValue(cell));
                     }
-                    products[j-1]=product;
+                    products[j - 1] = product;
                 }
             }
         } catch (IOException e) {
@@ -39,8 +39,9 @@ public class ReadProductExcel {
         }
         return products;
     }
-    public Product getProductById(String id,InputStream in) {
-       // Product products[] = null;
+
+    public Product getProductById(String id, InputStream in) {
+        // Product products[] = null;
         try {
             XSSFWorkbook xw = new XSSFWorkbook(in);
             XSSFSheet xs = xw.getSheetAt(0);
@@ -61,7 +62,7 @@ public class ReadProductExcel {
                         product.setpPrice(this.getValue(cell));
                     }
                 }
-                if(id.equals(product.getpId())){
+                if (id.equals(product.getpId())) {
                     return product;
                 }
             }
@@ -90,7 +91,7 @@ public class ReadProductExcel {
             case NUMERIC:
                 DecimalFormat df = new DecimalFormat("#");
                 value = df.format(cell.getNumericCellValue());
-               // System.out.println("处理后的：" + value);
+                // System.out.println("处理后的：" + value);
                 /*value = cell.getNumericCellValue() + "";*/
                 break;
             case FORMULA:

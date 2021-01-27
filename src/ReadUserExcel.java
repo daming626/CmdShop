@@ -36,7 +36,7 @@ public class ReadUserExcel {
                     } else if (k == 3) {
                         user.setPhone(this.getValue(cell));
                     }
-                    users[j-1]=user;
+                    users[j - 1] = user;
                 }
             }
         } catch (IOException e) {
